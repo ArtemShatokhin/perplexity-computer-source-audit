@@ -69,7 +69,7 @@ portable        no change
 build surface   no change
 ```
 
-The diff goes layer by layer and reports one of four outcomes: no change, the published state flipped, the source URL moved, or the source no longer answers. Against the snapshot committed here, taken on the same day, every layer reports no change, which is the result a same-day comparison should give. `audit.py` exits 1 when any source is unreachable or any layer is missing a `source_url`, so the same command works as a CI check that fails the day a vendor's page disappears.
+The diff goes layer by layer and reports one of four outcomes: no change, the published state flipped, the source URL moved, or the source no longer answers. Against the snapshot committed here, taken on the same day, every layer reports no change, which is the result a same-day comparison should give. `audit.py` exits 1 when any source is unreachable or any layer is missing a `source_url`, so the same command works as a CI check that fails the day a vendor's page disappears. A source that answers 401, 403 or 429 is recorded in the snapshot as a bot check rather than a failure: Perplexity's pages answer 403 to a plain fetch and open normally in a browser, so the audit stores the status instead of pretending the page is gone.
 
 ## Why the boundary matters
 
