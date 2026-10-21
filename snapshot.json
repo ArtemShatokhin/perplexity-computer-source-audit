@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-10-21T07:33:10+00:00",
+  "layers": [
+    {
+      "layer": "sandbox",
+      "name": "SPACE sandbox platform",
+      "open": "yes",
+      "what_is_published": "The platform where Computer's sessions execute (isolated code execution, pause and resume, recovery, session branching) was published on 15 October 2026; the code is at github.com/perplexityai/SPACE and the announcement is perplexity.ai/hub/blog/open-sourcing-space.",
+      "source_url": "https://github.com/perplexityai/SPACE",
+      "checked": "2026-10-21",
+      "source": {
+        "url": "https://github.com/perplexityai/SPACE",
+        "status": 200,
+        "final_url": "https://github.com/perplexityai/SPACE",
+        "fetched_at": "2026-10-21T07:33:10+00:00"
+      }
+    },
+    {
+      "layer": "agent",
+      "name": "The agent and its planner",
+      "open": "no",
+      "what_is_published": "Nothing. Computer plans a goal into subtasks and hands them to sub-agents inside Perplexity's product; the planner has never been published.",
+      "source_url": "https://www.perplexity.ai/help-center/en/articles/13837784-what-is-computer",
+      "checked": "2026-10-21",
+      "source": {
+        "url": "https://www.perplexity.ai/help-center/en/articles/13837784-what-is-computer",
+        "status": 403,
+        "final_url": "https://www.perplexity.ai/help-center/en/articles/13837784-what-is-computer",
+        "blocked_by_bot_check": true,
+        "error": "HTTP Error 403: Forbidden"
+      }
+    },
+    {
+      "layer": "router",
+      "name": "The model router",
+      "open": "no",
+      "what_is_published": "Nothing. Perplexity routes each query across models it selects; the router is outside the scope of the SPACE release.",
+      "source_url": "https://www.perplexity.ai/hub/blog/open-sourcing-space",
+      "checked": "2026-10-21",
+      "source": {
+        "url": "https://www.perplexity.ai/hub/blog/open-sourcing-space",
+        "status": 403,
+        "final_url": "https://www.perplexity.ai/hub/blog/open-sourcing-space",
+        "blocked_by_bot_check": true,
+        "error": "HTTP Error 403: Forbidden"
+      }
+    },
+    {
+      "layer": "connectors",
+      "name": "The managed connector catalogue",
+      "open": "no",
+      "what_is_published": "Nothing. Gmail, Outlook, GitHub, Linear, Slack and Notion are reached through connections Perplexity manages and authorises; the catalogue is not published.",
+      "source_url": "https://www.perplexity.ai/help-center/en/articles/13837784-what-is-computer",
+      "checked": "2026-10-21",
+      "source": {
+        "url": "https://www.perplexity.ai/help-center/en/articles/13837784-what-is-computer",
+        "status": 403,
+        "final_url": "https://www.perplexity.ai/help-center/en/articles/13837784-what-is-computer",
+        "blocked_by_bot_check": true,
+        "error": "HTTP Error 403: Forbidden"
+      }
+    },
+    {
+      "layer": "device",
+      "name": "Portable Computer runtime",
+      "open": "no",
+      "what_is_published": "Nothing. Portable Computer runs the orchestrator, planner, scheduler and sandbox on the subscriber's own NVIDIA GPU, and still requires a Pro or Max plan: closed code on hardware you own.",
+      "source_url": "https://www.perplexity.ai/help-center/en/articles/20260915-what-is-portable-computer",
+      "checked": "2026-10-21",
+      "source": {
+        "url": "https://www.perplexity.ai/help-center/en/articles/20260915-what-is-portable-computer",
+        "status": 403,
+        "final_url": "https://www.perplexity.ai/help-center/en/articles/20260915-what-is-portable-computer",
+        "blocked_by_bot_check": true,
+        "error": "HTTP Error 403: Forbidden"
+      }
+    },
+    {
+      "layer": "build-surface",
+      "name": "The Agent API's Profiles, Skills and managed connectors",
+      "open": "partial",
+      "what_is_published": "A subscriber can declare versioned Profiles and Skills and reuse them across applications, but the definitions execute inside Perplexity's cloud.",
+      "source_url": "https://www.perplexity.ai/hub/blog/agent-api-now-supports-reusable-agents",
+      "checked": "2026-10-21",
+      "source": {
+        "url": "https://www.perplexity.ai/hub/blog/agent-api-now-supports-reusable-agents",
+        "status": 403,
+        "final_url": "https://www.perplexity.ai/hub/blog/agent-api-now-supports-reusable-agents",
+        "blocked_by_bot_check": true,
+        "error": "HTTP Error 403: Forbidden"
+      }
+    }
+  ]
+}
