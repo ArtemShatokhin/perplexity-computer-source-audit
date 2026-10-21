@@ -97,17 +97,14 @@ def run() -> int:
     SNAPSHOT.write_text(json.dumps(snapshot, indent=2) + "\n", encoding="utf-8")
 
     for row in rows:
-        status = row["source"].get("status")
-        if row["source"].get("blocked_by_bot_check"):
-            status = f"{status} (bot check, open in a browser)"
-        mark = "PUBLISHED" if row["open"] == "yes" else ("PARTIAL" if row["open"] == "partial" else "CLOSED")
-        print(f"{row['layer']:<13} {mark:<10} source {status}  {row['source_url']}")
+        mark = {"yes": "published", "partial": "partial"}.get(row["open"], "not published")
+        print(f"{row.get('label', row['layer']):<15} {mark:<14} {row['source_url']}")
     if problems:
-        print(f"\n{len(problems)} problem(s):")
         for problem in problems:
-            print(f"  {problem}")
+            print(problem)
+        print(f"{len(problems)} failures")
         return 1
-    print(f"\nwrote {SNAPSHOT.name}: {len(rows)} layers, every source reachable")
+    print(f"wrote {SNAPSHOT.name}")
     return 0
 
 
@@ -117,8 +114,10 @@ def diff(previous_path: Path) -> int:
     old = {row["layer"]: row for row in previous.get("layers", [])}
     new = {row["layer"]: row for row in current.get("layers", [])}
     changes = 0
-    for layer in sorted(set(old) | set(new)):
-        if layer not in old:
+    order = [row["layer"] for row in current.get("layers", [])]
+    order += [name for name in sorted(set(old) | set(new)) if name not in order]
+    for layer in order:
+        if layer not in new:
             print(f"{layer}: new layer, open={new[layer]['open']}")
             changes += 1
             continue
@@ -127,6 +126,8 @@ def diff(previous_path: Path) -> int:
             changes += 1
             continue
         before, after = old[layer], new[layer]
+        label = after.get("label", after.get("layer", layer))
+        layer_changes = changes
         if before.get("open") != after.get("open"):
             print(f"{layer}: open {before.get('open')} -> {after.get('open')}")
             changes += 1
@@ -136,8 +137,10 @@ def diff(previous_path: Path) -> int:
         source = after.get("source", {})
         status = source.get("status")
         if status != 200 and not source.get("blocked_by_bot_check"):
-            print(f"{layer}: source now unreachable ({status})")
+            print(f"{label}: source now unreachable ({status})")
             changes += 1
+        if changes == layer_changes:
+            print(f"{label:<15} no change")
     if not changes:
         print(f"no change since {previous.get('generated_at', previous_path.name)}")
     return 0
